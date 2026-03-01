@@ -9,7 +9,7 @@ export interface JwtPayload {
 declare global {
     namespace Express {
         interface Request {
-            user?: JwtPayload;
+            jwtUser?: JwtPayload;
         }
     }
 }
@@ -26,7 +26,7 @@ export const authenticate = (req: Request, res: Response, next: NextFunction): v
 
     try {
         const payload = jwt.verify(token, process.env.JWT_SECRET as string) as JwtPayload;
-        req.user = payload;
+        req.jwtUser = payload;
         next();
     } catch {
         res.status(401).json({ message: 'Invalid or expired token' });
