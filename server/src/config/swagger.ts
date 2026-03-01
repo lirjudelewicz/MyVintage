@@ -24,6 +24,18 @@ const options: swaggerJsdoc.Options = {
                         refreshToken: { type: 'string' },
                     },
                 },
+                User: {
+                    type: 'object',
+                    properties: {
+                        _id:            { type: 'string' },
+                        username:       { type: 'string' },
+                        email:          { type: 'string' },
+                        profilePicture: { type: 'string', nullable: true },
+                        biography:      { type: 'string', nullable: true },
+                        createdAt:      { type: 'string', format: 'date-time' },
+                        updatedAt:      { type: 'string', format: 'date-time' },
+                    },
+                },
             },
         },
     },
