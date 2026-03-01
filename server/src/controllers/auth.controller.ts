@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import User from '../models/User';
 import RefreshToken from '../models/RefreshToken';
-import { generateTokens, getRefreshTokenExpiry } from '../services/token.service';
+import { generateTokens, getRefreshTokenExpiry } from '../services/token';
 
 export const register = async (req: Request, res: Response): Promise<void> => {
     const { username, email, password } = req.body;
