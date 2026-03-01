@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { createPost, getAllPosts, getPostsByUser, getPostById, updatePost, deletePost } from '../controllers/post.controller';
+import { createPost, getAllPosts, getPostsByUser, getPostById, updatePost, deletePost, toggleLike } from '../controllers/post.controller';
 import { authenticate } from '../middleware/auth.middleware';
 
 const router = Router();
@@ -171,5 +171,33 @@ router.put('/:id', authenticate, updatePost);
  *         description: Post not found
  */
 router.delete('/:id', authenticate, deletePost);
+
+/**
+ * @swagger
+ * /api/posts/{id}/like:
+ *   post:
+ *     summary: Toggle like on a post (like if not liked, unlike if already liked)
+ *     tags: [Posts]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema: { type: string }
+ *     responses:
+ *       200:
+ *         description: Like toggled
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 liked:      { type: boolean }
+ *                 likesCount: { type: number }
+ *       404:
+ *         description: Post not found
+ */
+router.post('/:id/like', authenticate, toggleLike);
 
 export default router;

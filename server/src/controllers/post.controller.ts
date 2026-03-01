@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import Post from '../models/Post';
+import Like from '../models/Like';
 
 export const createPost = async (req: Request, res: Response): Promise<void> => {
     const { title, description, category, price, condition, year, brand, style, images } = req.body;
@@ -92,4 +93,35 @@ export const deletePost = async (req: Request, res: Response): Promise<void> => 
 
     await post.deleteOne();
     res.json({ message: 'Post deleted successfully' });
+};
+
+export const toggleLike = async (req: Request, res: Response): Promise<void> => {
+    const userId = req.jwtUser!.userId;
+    const postId = req.params.id;
+
+    const postExists = await Post.exists({ _id: postId });
+    if (!postExists) {
+        res.status(404).json({ message: 'Post not found' });
+        return;
+    }
+
+    const existing = await Like.findOne({ post: postId, user: userId });
+
+    if (existing) {
+        await existing.deleteOne();
+        const updated = await Post.findByIdAndUpdate(
+            postId,
+            { $inc: { likesCount: -1 } },
+            { new: true }
+        );
+        res.json({ liked: false, likesCount: updated!.likesCount });
+    } else {
+        await Like.create({ post: postId, user: userId });
+        const updated = await Post.findByIdAndUpdate(
+            postId,
+            { $inc: { likesCount: 1 } },
+            { new: true }
+        );
+        res.json({ liked: true, likesCount: updated!.likesCount });
+    }
 };
