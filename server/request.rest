@@ -64,8 +64,19 @@ Authorization: Bearer {{accessToken}}
 
 ###
 
-# COMMENTS
+# ─────────────────────────────────────────────
+# LIKES
+# ─────────────────────────────────────────────
 
+### Toggle like on a post (like / unlike)
+POST {{baseUrl}}/api/posts/{{postId}}/like
+Authorization: Bearer {{accessToken}}
+
+###
+
+# ─────────────────────────────────────────────
+# COMMENTS
+# ─────────────────────────────────────────────
 
 ### Add comment to a post
 POST {{baseUrl}}/api/posts/{{postId}}/comments
