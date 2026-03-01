@@ -4,9 +4,7 @@
 @postId = REPLACE_WITH_POST_ID
 @commentId = REPLACE_WITH_COMMENT_ID
 
-# ─────────────────────────────────────────────
 # POSTS
-# ─────────────────────────────────────────────
 
 ### Create post
 POST {{baseUrl}}/api/posts
