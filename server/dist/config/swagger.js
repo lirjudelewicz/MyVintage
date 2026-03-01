@@ -1,6 +1,10 @@
-import swaggerJsdoc from 'swagger-jsdoc';
-
-const options: swaggerJsdoc.Options = {
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const swagger_jsdoc_1 = __importDefault(require("swagger-jsdoc"));
+const options = {
     definition: {
         openapi: '3.0.0',
         info: {
@@ -20,20 +24,20 @@ const options: swaggerJsdoc.Options = {
                 AuthTokens: {
                     type: 'object',
                     properties: {
-                        accessToken:  { type: 'string' },
+                        accessToken: { type: 'string' },
                         refreshToken: { type: 'string' },
                     },
                 },
                 User: {
                     type: 'object',
                     properties: {
-                        _id:            { type: 'string' },
-                        username:       { type: 'string' },
-                        email:          { type: 'string' },
+                        _id: { type: 'string' },
+                        username: { type: 'string' },
+                        email: { type: 'string' },
                         profilePicture: { type: 'string', nullable: true },
-                        biography:      { type: 'string', nullable: true },
-                        createdAt:      { type: 'string', format: 'date-time' },
-                        updatedAt:      { type: 'string', format: 'date-time' },
+                        biography: { type: 'string', nullable: true },
+                        createdAt: { type: 'string', format: 'date-time' },
+                        updatedAt: { type: 'string', format: 'date-time' },
                     },
                 },
             },
@@ -41,5 +45,5 @@ const options: swaggerJsdoc.Options = {
     },
     apis: ['./src/routes/*.ts'],
 };
-
-export default swaggerJsdoc(options);
+exports.default = (0, swagger_jsdoc_1.default)(options);
+//# sourceMappingURL=swagger.js.map

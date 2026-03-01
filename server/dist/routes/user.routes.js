@@ -1,16 +1,15 @@
-import { Router } from 'express';
-import { getAllUsers, getUserById, updateUser, deleteUser } from '../controllers/user.controller';
-import { authenticate } from '../middleware/auth.middleware';
-
-const router = Router();
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const user_controller_1 = require("../controllers/user.controller");
+const auth_middleware_1 = require("../middleware/auth.middleware");
+const router = (0, express_1.Router)();
 /**
  * @swagger
  * tags:
  *   name: Users
  *   description: User profile management
  */
-
 /**
  * @swagger
  * /api/users:
@@ -27,8 +26,7 @@ const router = Router();
  *               items:
  *                 $ref: '#/components/schemas/User'
  */
-router.get('/', getAllUsers);
-
+router.get('/', user_controller_1.getAllUsers);
 /**
  * @swagger
  * /api/users/{id}:
@@ -50,8 +48,7 @@ router.get('/', getAllUsers);
  *       404:
  *         description: User not found
  */
-router.get('/:id', getUserById);
-
+router.get('/:id', user_controller_1.getUserById);
 /**
  * @swagger
  * /api/users/{id}:
@@ -86,8 +83,7 @@ router.get('/:id', getUserById);
  *       404:
  *         description: User not found
  */
-router.put('/:id', authenticate, updateUser);
-
+router.put('/:id', auth_middleware_1.authenticate, user_controller_1.updateUser);
 /**
  * @swagger
  * /api/users/{id}:
@@ -109,6 +105,6 @@ router.put('/:id', authenticate, updateUser);
  *       404:
  *         description: User not found
  */
-router.delete('/:id', authenticate, deleteUser);
-
-export default router;
+router.delete('/:id', auth_middleware_1.authenticate, user_controller_1.deleteUser);
+exports.default = router;
+//# sourceMappingURL=user.routes.js.map

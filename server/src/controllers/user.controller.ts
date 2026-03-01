@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import User from '../models/User';
+import { AuthRequest } from '../types/authRequest';
 
 export const getAllUsers = async (_req: Request, res: Response): Promise<void> => {
     const users = await User.find().select('-password');
@@ -17,7 +18,7 @@ export const getUserById = async (req: Request, res: Response): Promise<void> =>
     res.json(user);
 };
 
-export const updateUser = async (req: Request, res: Response): Promise<void> => {
+export const updateUser = async (req: AuthRequest, res: Response): Promise<void> => {
     if (req.params.id !== req.jwtUser?.userId) {
         res.status(403).json({ message: 'Forbidden: you can only update your own profile' });
         return;
@@ -40,7 +41,7 @@ export const updateUser = async (req: Request, res: Response): Promise<void> => 
     res.json(user);
 };
 
-export const deleteUser = async (req: Request, res: Response): Promise<void> => {
+export const deleteUser = async (req: AuthRequest, res: Response): Promise<void> => {
     if (req.params.id !== req.jwtUser?.userId) {
         res.status(403).json({ message: 'Forbidden: you can only delete your own account' });
         return;
