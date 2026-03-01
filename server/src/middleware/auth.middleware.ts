@@ -1,20 +1,13 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
+import { AuthRequest } from '../types/authRequest';
 
 export interface JwtPayload {
     userId: string;
     email: string;
 }
 
-declare global {
-    namespace Express {
-        interface Request {
-            user?: JwtPayload;
-        }
-    }
-}
-
-export const authenticate = (req: Request, res: Response, next: NextFunction): void => {
+export const authenticate = (req: AuthRequest, res: Response, next: NextFunction): void => {
     const authHeader = req.headers.authorization;
 
     if (!authHeader?.startsWith('Bearer ')) {
@@ -26,7 +19,7 @@ export const authenticate = (req: Request, res: Response, next: NextFunction): v
 
     try {
         const payload = jwt.verify(token, process.env.JWT_SECRET as string) as JwtPayload;
-        req.user = payload;
+        req.jwtUser = payload;
         next();
     } catch {
         res.status(401).json({ message: 'Invalid or expired token' });
