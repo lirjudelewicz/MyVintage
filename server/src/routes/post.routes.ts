@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { createPost, getAllPosts, getPostById, updatePost, deletePost } from '../controllers/post.controller';
+import { createPost, getAllPosts, getPostsByUser, getPostById, updatePost, deletePost } from '../controllers/post.controller';
 import { authenticate } from '../middleware/auth.middleware';
 
 const router = Router();
@@ -73,6 +73,23 @@ router.post('/', authenticate, createPost);
  *         description: List of posts
  */
 router.get('/', getAllPosts);
+
+/**
+ * @swagger
+ * /api/posts/user/{userId}:
+ *   get:
+ *     summary: Get all posts by a specific user
+ *     tags: [Posts]
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema: { type: string }
+ *     responses:
+ *       200:
+ *         description: List of posts by user
+ */
+router.get('/user/:userId', getPostsByUser);
 
 /**
  * @swagger

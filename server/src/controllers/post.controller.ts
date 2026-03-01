@@ -35,6 +35,13 @@ export const getAllPosts = async (req: Request, res: Response): Promise<void> =>
     res.json(posts);
 };
 
+export const getPostsByUser = async (req: Request, res: Response): Promise<void> => {
+    const posts = await Post.find({ seller: req.params.userId })
+        .populate('seller', 'username profilePicture')
+        .sort({ createdAt: -1 });
+    res.json(posts);
+};
+
 export const getPostById = async (req: Request, res: Response): Promise<void> => {
     const post = await Post.findById(req.params.id).populate('seller', 'username profilePicture');
 
