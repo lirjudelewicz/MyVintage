@@ -4,9 +4,7 @@
 @postId = REPLACE_WITH_POST_ID
 @commentId = REPLACE_WITH_COMMENT_ID
 
-# ─────────────────────────────────────────────
 # POSTS
-# ─────────────────────────────────────────────
 
 ### Create post
 POST {{baseUrl}}/api/posts
@@ -66,9 +64,8 @@ Authorization: Bearer {{accessToken}}
 
 ###
 
-# ─────────────────────────────────────────────
 # COMMENTS
-# ─────────────────────────────────────────────
+
 
 ### Add comment to a post
 POST {{baseUrl}}/api/posts/{{postId}}/comments
