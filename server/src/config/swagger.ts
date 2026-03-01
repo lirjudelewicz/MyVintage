@@ -24,6 +24,17 @@ const options: swaggerJsdoc.Options = {
                         refreshToken: { type: 'string' },
                     },
                 },
+                Comment: {
+                    type: 'object',
+                    properties: {
+                        _id:       { type: 'string' },
+                        post:      { type: 'string' },
+                        author:    { $ref: '#/components/schemas/User' },
+                        content:   { type: 'string' },
+                        createdAt: { type: 'string', format: 'date-time' },
+                        updatedAt: { type: 'string', format: 'date-time' },
+                    },
+                },
                 User: {
                     type: 'object',
                     properties: {
