@@ -7,7 +7,15 @@ export interface JwtPayload {
     email: string;
 }
 
-export const authenticate = (req: AuthRequest, res: Response, next: NextFunction): void => {
+declare global {
+    namespace Express {
+        interface Request {
+            jwtUser?: JwtPayload;
+        }
+    }
+}
+
+export const authenticate = (req: Request, res: Response, next: NextFunction): void => {
     const authHeader = req.headers.authorization;
 
     if (!authHeader?.startsWith('Bearer ')) {

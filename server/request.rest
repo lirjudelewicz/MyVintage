@@ -1,0 +1,64 @@
+@baseUrl = http://localhost:3000
+@accessToken = REPLACE_WITH_ACCESS_TOKEN
+@userId = REPLACE_WITH_USER_ID
+@postId = REPLACE_WITH_POST_ID
+
+# ─────────────────────────────────────────────
+# POSTS
+# ─────────────────────────────────────────────
+
+### Create post
+POST {{baseUrl}}/api/posts
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+  "title": "Vintage Levi's Jacket",
+  "description": "Great condition denim jacket from the 80s",
+  "category": "clothing",
+  "price": 75,
+  "condition": "good",
+  "year": 1985,
+  "brand": "Levi's",
+  "style": "Casual",
+  "images": []
+}
+
+###
+
+### Get all posts
+GET {{baseUrl}}/api/posts
+
+###
+
+### Get all posts with filters
+GET {{baseUrl}}/api/posts?category=clothing&minPrice=10&maxPrice=100
+
+###
+
+### Get posts by user
+GET {{baseUrl}}/api/posts/user/{{userId}}
+
+###
+
+### Get post by ID
+GET {{baseUrl}}/api/posts/{{postId}}
+
+###
+
+### Update post
+PUT {{baseUrl}}/api/posts/{{postId}}
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+  "title": "Updated Title",
+  "price": 60,
+  "status": "active"
+}
+
+###
+
+### Delete post
+DELETE {{baseUrl}}/api/posts/{{postId}}
+Authorization: Bearer {{accessToken}}

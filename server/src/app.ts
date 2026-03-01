@@ -4,6 +4,7 @@ import path from "path";
 import swaggerUi from 'swagger-ui-express';
 import connectDB from './services/db';
 import authRoutes from './routes/auth.routes';
+import postRoutes from './routes/post.routes';
 import userRoutes from './routes/user.routes';
 import swaggerSpec from './config/swagger';
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
