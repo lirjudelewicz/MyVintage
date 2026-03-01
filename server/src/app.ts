@@ -1,17 +1,22 @@
 import express, { Application, Request, Response } from 'express';
 import dotenv from "dotenv";
 import path from "path";
+import passport from 'passport';
 import swaggerUi from 'swagger-ui-express';
 import connectDB from './services/db';
 import authRoutes from './routes/auth.routes';
+import oauthRoutes from './routes/oauth.routes';
 import swaggerSpec from './config/swagger';
+import './config/passport';
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 const app: Application = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+app.use(passport.initialize());
 app.use('/api/auth', authRoutes);
+app.use('/api/auth', oauthRoutes);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.listen(PORT, (error) =>{
