@@ -95,6 +95,94 @@
   border-color: #c8b8a8;
 }
 
+.pdm-owner-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.pdm-delete-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #c0392b;
+  background: #fdf2f0;
+  border: 1px solid #f0cac5;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.pdm-delete-btn svg {
+  width: 13px;
+  height: 13px;
+}
+
+.pdm-delete-btn:hover {
+  background: #fae0dc;
+  border-color: #e8a09a;
+}
+
+.pdm-delete-confirm {
+  padding-top: 4px;
+}
+
+.pdm-delete-confirm-text {
+  font-size: 13px;
+  color: #3b2314;
+  margin: 10px 0 10px;
+}
+
+.pdm-delete-confirm-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.pdm-delete-cancel-btn {
+  flex: 1;
+  padding: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #3b2314;
+  background: #f0e9df;
+  border: 1px solid #ddd4c8;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.pdm-delete-cancel-btn:hover {
+  background: #e8ddd0;
+}
+
+.pdm-delete-confirm-btn {
+  flex: 1;
+  padding: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  background: #c0392b;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.pdm-delete-confirm-btn:hover:not(:disabled) {
+  background: #a93226;
+}
+
+.pdm-delete-confirm-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 /* ── Scrollable body ── */
 .pdm-body {
   overflow-y: auto;

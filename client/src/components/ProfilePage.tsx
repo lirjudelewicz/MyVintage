@@ -445,6 +445,10 @@ export default function ProfilePage() {
             setPosts(prev => prev.map(p => p._id === updated._id ? updated as Post : p))
             setViewingPost(updated as Post)
           }}
+          onDelete={() => {
+            setPosts(prev => prev.filter(p => p._id !== viewingPost._id))
+            setViewingPost(null)
+          }}
         />
       )}
 
